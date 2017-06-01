@@ -2,7 +2,10 @@
   "require": {
   	"noahbuscher/macaw": "dev-master",
   	"monolog/monolog": "1.*",
-    "illuminate/database": "*"
+    "illuminate/database": "*",
+    "filp/whoops": "*",
+    "nette/mail": "*",
+    "predis/predis": "*"
   },
   "repositories": {
     "packagist": {
@@ -11,11 +14,8 @@
     }
   },
 	"autoload": {
-        "psr-4": {
-            "Common\\Controller\\": "Application/Commons/Controller",
-            "Common\\Model\\": "Application/Commons/Model",
-            "Home\\Controller\\": "Application/Home/Controller",
-            "Home\\Model\\": "Application/Home/Model"
+        "psr-4": {            
+            "App\\": "Application/"
         },
         "files":[
           "Config/DefaultConfig.php",

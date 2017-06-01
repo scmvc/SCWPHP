@@ -1,10 +1,11 @@
 <?php
 use NoahBuscher\Macaw\Macaw;
-Macaw::get("/","Home\Controller\IndexController@Home");
-Macaw::get("/hello",function(){
-	print_r($_GET);
+Macaw::get("/Home-index/GetArray.html", "\App\Home\Controller\IndexController@Home");
+
+Macaw::get('/(:any)/(:any)/(:any)', function ($Module, $Controller, $Action) {
+	echo $Module . $Controller . $Action;
 });
-Macaw::error(function() {
-  echo '404';
+Macaw::error(function () {
+	echo '404';
 });
 Macaw::dispatch();

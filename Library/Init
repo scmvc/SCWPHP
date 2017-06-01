@@ -1,0 +1,42 @@
+<?php
+
+namespace Run;
+use Illuminate\Database\Capsule\Manager as DB;
+class Init
+{
+	function __construct()
+	{
+	}
+
+	/**
+	 * 框架初始化
+	 */
+	public static function RunInit(){
+		self::AutoLoadInit();
+		self::DBInit();
+		self::RouteInit();
+	}
+
+	/**
+	 * 初始化数据库驱动
+	 */
+	private static function DBInit(){
+		$DB = new DB;
+		$DB->addConnection(require "Config/DBConfig.php");
+		$DB->bootEloquent();
+	}
+
+	/**
+	 * 初始化路由
+	 */
+	private static function RouteInit(){
+		require '_Route/routes.php';
+	}
+
+	/**
+	 * 初始化自动加载机制
+	 */
+	private static function AutoLoadInit(){
+		require 'vendor/autoload.php';
+	}
+}

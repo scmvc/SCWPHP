@@ -2,7 +2,10 @@
   "require": {
   	"noahbuscher/macaw": "dev-master",
   	"monolog/monolog": "1.*",
-    "illuminate/database": "*"
+    "illuminate/database": "*",
+    "filp/whoops": "*",
+    "nette/mail": "*",
+    "predis/predis": "*"
   },
   "repositories": {
     "packagist": {

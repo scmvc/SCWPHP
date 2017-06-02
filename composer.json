@@ -1,0 +1,28 @@
+{
+  "require": {
+  	"noahbuscher/macaw": "dev-master",
+  	"monolog/monolog": "1.*",
+    "illuminate/database": "*",
+    "filp/whoops": "*",
+    "nette/mail": "*",
+    "predis/predis": "*"
+  },
+  "repositories": {
+    "packagist": {
+      "type": "composer",
+      "url": "https://packagist.phpcomposer.com"
+    }
+  },
+	"autoload": {
+        "psr-4": {
+            "App\\":"Application/"
+        },
+        "files":[
+          "Config/DefaultConfig.php",
+          "Library/Common/function.php",
+          "Library/Common/Controller.php",
+          "Library/DataBaseExtension/DB.php",
+          "Library/DataBaseExtension/DBExtension.php"
+        ]
+    }
+}

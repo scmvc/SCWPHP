@@ -47,16 +47,13 @@ class ComposerStaticInit0eff6be6feeed1ec1201f7cea3997cde
             'Illuminate\\Contracts\\' => 21,
             'Illuminate\\Container\\' => 21,
         ),
-        'H' => 
-        array (
-            'Home\\Model\\' => 11,
-            'Home\\Controller\\' => 16,
-        ),
         'C' => 
         array (
-            'Common\\Model\\' => 13,
-            'Common\\Controller\\' => 18,
             'Carbon\\' => 7,
+        ),
+        'A' => 
+        array (
+            'App\\' => 4,
         ),
     );
 
@@ -105,25 +102,13 @@ class ComposerStaticInit0eff6be6feeed1ec1201f7cea3997cde
         array (
             0 => __DIR__ . '/..' . '/illuminate/container',
         ),
-        'Home\\Model\\' => 
-        array (
-            0 => __DIR__ . '/../..' . '/Application/Home/Model',
-        ),
-        'Home\\Controller\\' => 
-        array (
-            0 => __DIR__ . '/../..' . '/Application/Home/Controller',
-        ),
-        'Common\\Model\\' => 
-        array (
-            0 => __DIR__ . '/../..' . '/Application/Commons/Model',
-        ),
-        'Common\\Controller\\' => 
-        array (
-            0 => __DIR__ . '/../..' . '/Application/Commons/Controller',
-        ),
         'Carbon\\' => 
         array (
             0 => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon',
+        ),
+        'App\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/Application',
         ),
     );
 

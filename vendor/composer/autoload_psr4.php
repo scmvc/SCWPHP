@@ -17,9 +17,6 @@ return array(
     'Illuminate\\Database\\' => array($vendorDir . '/illuminate/database'),
     'Illuminate\\Contracts\\' => array($vendorDir . '/illuminate/contracts'),
     'Illuminate\\Container\\' => array($vendorDir . '/illuminate/container'),
-    'Home\\Model\\' => array($baseDir . '/Application/Home/Model'),
-    'Home\\Controller\\' => array($baseDir . '/Application/Home/Controller'),
-    'Common\\Model\\' => array($baseDir . '/Application/Commons/Model'),
-    'Common\\Controller\\' => array($baseDir . '/Application/Commons/Controller'),
     'Carbon\\' => array($vendorDir . '/nesbot/carbon/src/Carbon'),
+    'App\\' => array($baseDir . '/Application'),
 );

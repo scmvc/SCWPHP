@@ -1,13 +1,11 @@
 <?php
 
-namespace Home\Controller;
-use Home\Model\Test;
+namespace App\Home\Controller;
 use BaseController\Controller;
-class IndexController extends Controller
-{
-	public function Home(){
-		$res = M("test")->get();
-		print_r($res);
-		include View();
+
+class IndexController extends Controller {
+	public function Home() {
+		// $res = M("test")->get();
+		// include View();
 	}
 }

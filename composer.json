@@ -15,10 +15,7 @@
   },
 	"autoload": {
         "psr-4": {
-            "Common\\Controller\\": "Application/Commons/Controller",
-            "Common\\Model\\": "Application/Commons/Model",
-            "Home\\Controller\\": "Application/Home/Controller",
-            "Home\\Model\\": "Application/Home/Model"
+            "App\\":"Application/"
         },
         "files":[
           "Config/DefaultConfig.php",

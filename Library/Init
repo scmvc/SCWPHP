@@ -36,6 +36,7 @@ class Init
 	 */
 	private static function RouteInit(){
 		require '_Route/routes.php';
+		\Route::dispatch();
 	}
 
 	/**

@@ -1,6 +1,5 @@
 <?php
 
-namespace Route;
 
 /**
  * @method static Macaw get(string $route, Callable $callback)

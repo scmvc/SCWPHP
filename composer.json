@@ -1,6 +1,5 @@
 {
   "require": {
-  	"noahbuscher/macaw": "dev-master",
   	"monolog/monolog": "1.*",
     "illuminate/database": "*",
     "filp/whoops": "*",
@@ -22,7 +21,8 @@
           "Library/Common/function.php",
           "Library/Common/Controller.php",
           "Library/DataBaseExtension/DB.php",
-          "Library/DataBaseExtension/DBExtension.php"
+          "Library/DataBaseExtension/DBExtension.php",
+          "Library/RouteImpl/Route"
         ]
     }
 }

@@ -1,7 +1,7 @@
 <?php
-use NoahBuscher\Macaw\Macaw;
-Macaw::get("/", "App\Home\Controller\IndexController@Home");
-Macaw::get("/hello", function () {
+use Route\Route;
+Route::get("/", "App\Home\Controller\IndexController@Home");
+Route::get("/hello", function () {
 	print_r($_GET);
 });
-Macaw::dispatch();
+Route::dispatch();

@@ -6,8 +6,8 @@ use BaseController\Controller;
 class IndexController extends Controller {
 
 	public function Home() {
-		WriteLog("aaaa");
-		// $res = M("test")->get();
-		// include View();
+		$this->assign("title", "123123");
+		$this->assign("name", "aaa");
+		$this->display();
 	}
 }

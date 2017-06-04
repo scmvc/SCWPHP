@@ -9,6 +9,7 @@ return array(
     '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => $vendorDir . '/symfony/polyfill-mbstring/bootstrap.php',
     '5255c38a0faeba867671b61dfda6d864' => $vendorDir . '/paragonie/random_compat/lib/random.php',
     '72579e7bd17821bb1321b87411366eae' => $vendorDir . '/illuminate/support/helpers.php',
+    'f084d01b0a599f67676cffef638aa95b' => $vendorDir . '/smarty/smarty/libs/bootstrap.php',
     '8a85e78eaa2f3b61fd6c4e40f8e28626' => $baseDir . '/Config/DefaultConfig.php',
     '65667f0a2a175cfebd73a15dacc8295a' => $baseDir . '/Library/Common/function.php',
     '0859aba894e4fe95ce0b9fb38e43e1e4' => $baseDir . '/Library/Common/Controller.php',

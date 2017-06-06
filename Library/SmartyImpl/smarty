@@ -1,0 +1,17 @@
+<?php
+define('SITE_ROOT', str_replace('\\', '/', __DIR__));
+defined('DATA_PATH') or define('DATA_PATH', SITE_ROOT . 'Cache/Smarty/data');
+$smarty = new \Smarty;
+$smarty->setTemplateDir(SITE_ROOT . '/views/'); //设置模板目录
+$smarty->setCompileDir(SITE_ROOT . '/data/cache/templates_c/');
+$smarty->setConfigDir(SITE_ROOT . '/views/smarty_configs/');
+$smarty->setCacheDir(SITE_ROOT . '/data/cache/smarty_cache/');
+if (APP_DEBUG) {
+	//$smarty->debugging      = true;
+	$smarty->caching        = false;
+	$smarty->cache_lifetime = 0;
+} else {
+	//$smarty->debugging      = false;
+	$smarty->caching        = true;
+	$smarty->cache_lifetime = 120;
+}

@@ -4,10 +4,16 @@
  */
 namespace BaseController;
 class Controller {
+
+	protected $logger = "";
+	protected $assignArray = array();
+
 	function __construct() {
 		if (method_exists($this, 'init')) {
 			$this->init();
 		}
+		global $logger;
+		$this->logger = $logger;
 	}
 
 	protected function Upload($FILES, $A = "", $B = "") {
@@ -50,5 +56,38 @@ class Controller {
 			return 0;
 		}
 		return $result;
+	}
+
+	protected function assign($key, $value) {
+		$this->assignArray[$key] = $value;
+	}
+
+	protected function display($View = "") {
+		$smarty = new \Smarty;
+		global $ViewPath;
+		$ViewPath = explode("\\", $ViewPath);
+		$ViewPath[3] = explode("Controller", $ViewPath[3]);
+		$ViewPath[3] = $ViewPath[3][0];
+		if ($View == "") {
+			$View = APP_PATH . "/" . $ViewPath[1] . "/View/" . $ViewPath[3] . "/";
+		}
+
+		$smarty->setTemplateDir($View); //设置模板目录
+		$smarty->setCompileDir(SITE_ROOT . '/Cache/Smarty/templates_c/');
+		$smarty->setConfigDir(SITE_ROOT . '/Cache/Smarty/smarty_configs/');
+		$smarty->setCacheDir(SITE_ROOT . '/Cache/Smarty/smarty_cache/');
+		if (APP_DEBUG) {
+			//$smarty->debugging      = true;
+			$smarty->caching = false;
+			$smarty->cache_lifetime = 0;
+		} else {
+			//$smarty->debugging      = false;
+			$smarty->caching = true;
+			$smarty->cache_lifetime = 120;
+		}
+		foreach ($this->assignArray as $key => $value) {
+			$smarty->assign($key, $value);
+		}
+		$smarty->display($View . $ViewPath[4] . ".blade.php");
 	}
 }

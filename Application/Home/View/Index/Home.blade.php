@@ -1,1 +1,1 @@
-aaaaaaaxxcvzxcvasv
+{$title}{$name}

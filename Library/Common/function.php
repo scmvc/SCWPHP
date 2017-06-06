@@ -1,4 +1,5 @@
 <?php
+use Monolog\Handler\FirePHPHandler;
 use Monolog\Handler\StreamHandler;
 use Monolog\Logger;
 function View($Path = "") {
@@ -56,6 +57,103 @@ function GETIP() {
 
 	return $ip;
 
+}
+
+function dump($data)
+{
+	echo "<pre>";
+	print_r($data);
+	echo "</pre>";
+	exit;
+}
+/**
+ * 容器
+ */
+function C(){
+	static $c=array();
+	if(!isset($c['container'])){
+		$c['container']=new \System\Di();
+	}
+	return $c['container'];
+}
+/**
+ * 全局变量快捷操作
+ * @param [type] $key   [description]
+ * @param [type] $value [description]
+ */
+function S($key,$value=null)
+{
+	if($value!=null){
+		$GLOBALS[$key]=$value;
+	}
+	if(isset($GLOBALS[$key])){
+		return $GLOBALS[$key];
+	}
+}
+/**
+ * 载入模型
+ * @param  [type] $name [description]
+ * @param  string $proj [description]
+ * @return [type]       [description]
+ */
+function lm($name,$proj='')
+{
+	$proj=empty($proj)?S('CUR_PROJECT'):$proj;
+	if(empty($proj)){
+		throw new \Exception("项目{$proj}不存在", 1);		
+	}
+	$cls="\\App\\".ucfirst($proj)."\\Model\\".ucfirst($name);
+	$key='model_'.$name.$proj;
+	C()->shared($key,$cls);
+	return C()->get($key);
+}
+/**
+ * 载入语言包
+ * @param  string $key  语言项
+ * @param  string $file 语言文件名
+ * @param  string $proj 项目名称
+ * @return [type]       [description]
+ */
+function lang(){
+	$proj=empty($proj)?S('CUR_PROJECT'):$proj;
+	$file=empty($file)?S('CUR_CONTROLLER'):$file;
+	$ckey="Lang_{$proj}_{$file}";	
+	if(C()->has($ckey)){
+		return C()->get($ckey);
+	}else{
+		C()->shared($ckey,function() use ($proj,$file){
+			$lang=new \System\Lang();
+			$langFile=ROOT_PATH."/Application/{$proj}/Lang/{$file}.php";
+			if(file_exists($langFile)){
+				$data=include $langFile;
+			}		
+			$lang->load($data);
+			return $lang;
+		});
+		return C()->get($ckey);
+	}
+}
+
+function appExec($proj,$ctrl,$method){
+	$proj=ucfirst($proj);
+	$ctrl=ucfirst($ctrl);
+	$method=ucfirst($method);
+
+	S('CUR_PROJECT',$proj);
+	S('CUR_CONTROLLER',$ctrl);
+	S('CUR_METHOD',$method);
+
+	$cls="\\App\\{$proj}\\Controller\\{$ctrl}";
+	C()->set($ctrl,$cls);
+	$cls=C()->get($ctrl);
+	if(!$cls){
+		exit("404 NOT FOUND");		
+	}
+	if(method_exists($cls, $method)){
+		return $cls->$method();
+	}
+	exit("406 METHOD NOT FOUND");	
+	
 }
 
 /**
@@ -125,10 +223,10 @@ function JsonReturn($data = "", $status = "200", $msg = "", $method = "") {
 	}
 }
 
-function WriteLog($logName = "Default") {
-	$log = new Logger($logName);
-	$logURI = "Cache/log/" . date("Y-m-d-H-i") . "log";
-	$log->pushHandler(new StreamHandler($logURI, Logger::WARNING));
-	$log->addWarning('Foo');
-	$log->addError('Bar');
+function WriteLog($Log) {
+	$logger = new Logger('LOGGS');
+	$logURI = "Cache/log/" . date("Y-m-d-H-i") . ".log";
+	$logger->pushHandler(new StreamHandler($logURI, Logger::DEBUG));
+	$logger->pushHandler(new FirePHPHandler());
+	$logger->addInfo($Log);
 }
